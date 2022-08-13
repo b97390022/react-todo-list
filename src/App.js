@@ -4,7 +4,7 @@ import TodoListToggle from './components/TodoListToggle.js';
 import TodoListItem from "./components/TodoListItem.js";
 
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from "uuid";
 
 const defaultTodoList = [
@@ -16,16 +16,23 @@ const defaultTodoList = [
     // { id: uuidv4(), text: "約ada禮拜四吃晚餐", checked: false },
 ];
 
-
-
+const defaultTab = ["全部", "待完成", "已完成"];
 
 function App() {
     let completedItems = 0;
     const [inputValue, setInputValue] = useState("");
     // eslint-disable-next-line
-    const [todoTab, setTodoTab] = useState(["全部", "待完成", "已完成"]);
+    // const [todoTab, setTodoTab] = useState(...defaultTab);
     const [nowTab, setNowTab] = useState("全部");
-    const [todoList, setTodoList] = useState([...defaultTodoList]);
+    const [todoList, setTodoList] = useState(() => {
+        // getting stored value
+        const savedTodoList = JSON.parse(localStorage.getItem("todoList"));
+        return savedTodoList || [];
+    });
+
+    useEffect(() => {
+        localStorage.setItem("todoList", JSON.stringify(todoList));
+    }, [todoList]);
 
     // 更新已完成項目
     for (let index = 0; index < todoList.length; index++) {
@@ -94,7 +101,7 @@ function App() {
                     </div>
                     <div className="todoList_list">
                         <ul className="todoList_tab">
-                            {todoTab.map((text, index) => {
+                            {defaultTab.map((text, index) => {
                                 return (
                                     <li key={index}>
                                         <a
