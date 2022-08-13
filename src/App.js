@@ -8,12 +8,12 @@ import { useState } from 'react';
 import { v4 as uuidv4 } from "uuid";
 
 const defaultTodoList = [
-    { id: uuidv4(), text: "把冰箱發霉的檸檬拿去丟", checked: false },
-    { id: uuidv4(), text: "打電話叫媽媽匯款給我", checked: false },
-    { id: uuidv4(), text: "整理電腦資料夾", checked: false },
-    { id: uuidv4(), text: "繳電費水費瓦斯費", checked: false },
-    { id: uuidv4(), text: "約vicky禮拜三泡溫泉", checked: false },
-    { id: uuidv4(), text: "約ada禮拜四吃晚餐", checked: false },
+    // { id: uuidv4(), text: "把冰箱發霉的檸檬拿去丟", checked: false },
+    // { id: uuidv4(), text: "打電話叫媽媽匯款給我", checked: false },
+    // { id: uuidv4(), text: "整理電腦資料夾", checked: false },
+    // { id: uuidv4(), text: "繳電費水費瓦斯費", checked: false },
+    // { id: uuidv4(), text: "約vicky禮拜三泡溫泉", checked: false },
+    // { id: uuidv4(), text: "約ada禮拜四吃晚餐", checked: false },
 ];
 
 
