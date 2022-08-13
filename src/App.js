@@ -7,25 +7,14 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from "uuid";
 
-const defaultTodoList = [
-    // { id: uuidv4(), text: "把冰箱發霉的檸檬拿去丟", checked: false },
-    // { id: uuidv4(), text: "打電話叫媽媽匯款給我", checked: false },
-    // { id: uuidv4(), text: "整理電腦資料夾", checked: false },
-    // { id: uuidv4(), text: "繳電費水費瓦斯費", checked: false },
-    // { id: uuidv4(), text: "約vicky禮拜三泡溫泉", checked: false },
-    // { id: uuidv4(), text: "約ada禮拜四吃晚餐", checked: false },
-];
 
 const defaultTab = ["全部", "待完成", "已完成"];
 
 function App() {
     let completedItems = 0;
     const [inputValue, setInputValue] = useState("");
-    // eslint-disable-next-line
-    // const [todoTab, setTodoTab] = useState(...defaultTab);
     const [nowTab, setNowTab] = useState("全部");
     const [todoList, setTodoList] = useState(() => {
-        // getting stored value
         const savedTodoList = JSON.parse(localStorage.getItem("todoList"));
         return savedTodoList || [];
     });
@@ -44,6 +33,13 @@ function App() {
     function deleteCompletedItems(event) {
         event.preventDefault();
         setTodoList(todoList.filter((item) => item.checked === false));
+    }
+
+    // 處理Input KeyDown Event
+    function handleInputKeyDown(event) {
+        if (event.key === "Enter") {
+            addTodoItem(event);
+        }
     }
 
     // 新增Todo Item
@@ -97,6 +93,7 @@ function App() {
                             value={inputValue}
                             setValue={setInputValue}
                             onClick={addTodoItem}
+                            onKeyDown={handleInputKeyDown}
                         />
                     </div>
                     <div className="todoList_list">

@@ -1,5 +1,5 @@
 
-function Input({ text, value, setValue, onClick }) {
+function Input({ text, value, setValue, onClick, onKeyDown }) {
     return (
         <>
             <input
@@ -9,6 +9,7 @@ function Input({ text, value, setValue, onClick }) {
                 onChange={(event) => {
                     setValue(event.target.value);
                 }}
+                onKeyDown={onKeyDown}
             />
             <a href="#" onClick={onClick}>
                 <i className="fa fa-plus"></i>
