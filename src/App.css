@@ -230,7 +230,7 @@ nav {
 nav h1 a {
   width: 243px;
   height: 39px;
-  background: url(https://upload.cc/i1/2022/03/23/8vTzYG.png) no-repeat;
+  background: url("./8vTzYG.png") no-repeat;
   display: block;
   text-indent: 101%;
   overflow: hidden;
