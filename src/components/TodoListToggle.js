@@ -4,9 +4,9 @@ function TodoListToggle({
     tab,
     onChecked,
     onDelete,
-    completedItems,
+    NotCompletedItems,
     deleteCompletedItems,
-    TodoListItem
+    TodoListItem,
 }) {
     let todoArray = [...todo];
 
@@ -31,7 +31,7 @@ function TodoListToggle({
                 })}
             </ul>
             <div className="todoList_statistics">
-                <p> {completedItems} 個已完成項目</p>
+                <p>{NotCompletedItems} 個待完成項目</p>
                 <a href="#" onClick={deleteCompletedItems}>
                     清除已完成項目
                 </a>

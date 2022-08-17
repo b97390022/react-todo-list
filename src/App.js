@@ -124,7 +124,7 @@ function NotFound() {
 
 function TodoList() {
 
-    let completedItems = 0;
+    let NotCompletedItems = 0;
     const [inputValue, setInputValue] = useState("");
     const [nowTab, setNowTab] = useState("全部");
     const [todoList, setTodoList] = useState(() => {
@@ -136,11 +136,8 @@ function TodoList() {
         localStorage.setItem("todoList", JSON.stringify(todoList));
     }, [todoList]);
 
-    // 更新已完成項目
-    for (let index = 0; index < todoList.length; index++) {
-        const element = todoList[index];
-        if (element.checked) completedItems = completedItems + 1;
-    }
+    // 更新待完成項目總數
+    NotCompletedItems = todoList.filter(item=>item.checked === false).length
 
     // 刪除所有已完成項目
     function deleteCompletedItems(event) {
@@ -238,7 +235,7 @@ function TodoList() {
                                     tab={nowTab}
                                     onChecked={setTodoItemState}
                                     onDelete={deleteTodoItem}
-                                    completedItems={completedItems}
+                                    NotCompletedItems={NotCompletedItems}
                                     deleteCompletedItems={deleteCompletedItems}
                                     TodoListItem={TodoListItem}
                                 />
