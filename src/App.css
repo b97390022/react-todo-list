@@ -230,7 +230,7 @@ nav {
 nav h1 a {
   width: 243px;
   height: 39px;
-  background: url("./8vTzYG.png") no-repeat;
+  background: url("./images/8vTzYG.png") no-repeat;
   display: block;
   text-indent: 101%;
   overflow: hidden;
@@ -614,4 +614,12 @@ nav ul a span {
 
 .emptyTodoList {
   text-align: center;
+}
+
+.instructions{
+  display: block;
+}
+
+.offscreen{
+  display: none;
 }

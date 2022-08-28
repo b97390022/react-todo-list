@@ -1,4 +1,4 @@
-function TodoListItem({ item: { id, text, checked }, onChecked, onDelete }) {
+export default function TodoListItem({ item: { id, content, completed_at }, onChecked, onDelete }) {
     return (
         <li>
             <label className="todoList_label">
@@ -6,15 +6,13 @@ function TodoListItem({ item: { id, text, checked }, onChecked, onDelete }) {
                     className="todoList_input"
                     type="checkbox"
                     value="true"
-                    checked={checked}
-                    onChange={(event) => {
-                        onChecked(id, event.target.checked);
-                    }}
+                    checked={completed_at ? true : false}
+                    onChange={(event) => {onChecked(id)}}
                 />
-                <span>{text}</span>
+                <span>{content}</span>
             </label>
             <a
-                href="#"
+                href="/not-exist"
                 onClick={(event) => {
                     event.preventDefault();
                     onDelete(id);
@@ -25,5 +23,3 @@ function TodoListItem({ item: { id, text, checked }, onChecked, onDelete }) {
         </li>
     );
 }
-
-export default TodoListItem;

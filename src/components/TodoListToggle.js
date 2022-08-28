@@ -1,5 +1,5 @@
 
-function TodoListToggle({
+export default function TodoListToggle({
     todo,
     tab,
     onChecked,
@@ -11,9 +11,9 @@ function TodoListToggle({
     let todoArray = [...todo];
 
     if (tab === "待完成") {
-        todoArray = todoArray.filter((item) => item.checked === false);
+        todoArray = todoArray.filter((item) => !item.completed_at);
     } else if (tab === "已完成") {
-        todoArray = todoArray.filter((item) => item.checked === true);
+        todoArray = todoArray.filter((item) => item.completed_at);
     }
 
     return (
@@ -32,12 +32,10 @@ function TodoListToggle({
             </ul>
             <div className="todoList_statistics">
                 <p>{NotCompletedItems} 個待完成項目</p>
-                <a href="#" onClick={deleteCompletedItems}>
+                <a href="/not-exist" onClick={deleteCompletedItems}>
                     清除已完成項目
                 </a>
             </div>
         </>
     );
 }
-
-export default TodoListToggle;
