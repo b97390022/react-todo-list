@@ -11,7 +11,7 @@ function Input({ text, value, setValue, onClick, onKeyDown }) {
                 }}
                 onKeyDown={onKeyDown}
             />
-            <a href="#" onClick={onClick}>
+            <a href="/not-exist" onClick={onClick}>
                 <i className="fa fa-plus"></i>
             </a>
         </>

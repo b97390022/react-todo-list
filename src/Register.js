@@ -32,8 +32,8 @@ export default function Register() {
                 //註冊成功，導向登入頁面登入
                 navigate("/");
                 mySwal({
-                    title: `${response.message}，請重新登入`,
-                    timer: 2000,
+                    title: `${response.message}，請重新登入。`,
+                    timer: 1500,
                 });
 
             },
@@ -42,7 +42,7 @@ export default function Register() {
                 mySwal({
                     title: error.message,
                     text: error.error.toString(),
-                    timer: 2000,
+                    timer: 1500,
                 });
             }
         );

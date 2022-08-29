@@ -37,11 +37,11 @@ export default function Login() {
             navigate(from, { replace: true });
             mySwal({
                 title: response.message,
-                timer: 2000,
+                timer: 1500,
             });
         }, (error)=>{
             mySwal({
-                title: error.message,
+                title: `${error.message}，電子信箱或密碼錯誤。`,
             });
         });
     }

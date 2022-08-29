@@ -81,9 +81,9 @@ const HexSchoolTodoProvider = {
     async getTodo(token, successCallback, errorCallback) {
         try {
             const response = await axios({
-                method: 'get',
+                method: "get",
                 baseURL: baseUrl,
-                url: '/todos',
+                url: "/todos",
                 headers: {
                     Authorization: token,
                 },
@@ -102,7 +102,7 @@ const HexSchoolTodoProvider = {
     }) {
         try {
             const response = await axios({
-                method: 'patch',
+                method: "patch",
                 baseURL: baseUrl,
                 url: `/todos/${id}/toggle`,
                 headers: {
@@ -125,7 +125,7 @@ const HexSchoolTodoProvider = {
     }) {
         try {
             const response = await axios({
-                method: 'delete',
+                method: "delete",
                 baseURL: baseUrl,
                 url: `/todos/${id}`,
                 headers: {

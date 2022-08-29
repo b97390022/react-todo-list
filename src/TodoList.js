@@ -18,7 +18,7 @@ export default function TodoListPage() {
     const [inputValue, setInputValue] = useState("");
     const [nowTab, setNowTab] = useState("全部");
     const [todoList, setTodoList] = useState([]);
-    const { checkBoxs, setCheckBoxs, deletes, setDeletes } =
+    const { checkBoxs, setCheckBoxs, deletes, setDeletes, isCheckBoxFetch } =
         useFetchContext();
 
     // 更新現有todolist
@@ -41,8 +41,12 @@ export default function TodoListPage() {
     // 更新Todo Item Checkbox
     const setTodoItemState = useCallback(
         (id) => {
-            // 如果仍在更改狀態，阻止使用者行為
+            // 如果仍在更改checkbox，阻止使用者行為
             if (checkBoxs.includes(id)) {
+                return;
+            }
+            // 如果仍在刪除，阻止使用者行為
+            if (deletes.includes(id)) {
                 return;
             }
             setCheckBoxs((prev) => [...prev, id]);
@@ -67,15 +71,18 @@ export default function TodoListPage() {
                 },
             });
         },
-        [HexSchoolTodoProvider, auth.token, checkBoxs, setCheckBoxs]
+        [HexSchoolTodoProvider, auth.token, checkBoxs, setCheckBoxs, deletes]
     );
 
     // 刪除單一個Todo Item
     const deleteTodoItem = useCallback(
         (id) => {
+            // 如果仍在更改checkbox，阻止使用者行為
+            if (checkBoxs.includes(id)) {
+                return;
+            }
             // 如果仍在刪除，阻止使用者行為
             if (deletes.includes(id)) {
-                console.log(`正在刪除${id}`);
                 return;
             }
             setDeletes((prev) => [...prev, id]);
@@ -93,13 +100,15 @@ export default function TodoListPage() {
                 },
             });
         },
-        [HexSchoolTodoProvider, auth.token, deletes, setDeletes]
+        [HexSchoolTodoProvider, auth.token, deletes, setDeletes, checkBoxs]
     );
 
     // 刪除所有已完成項目
     const deleteCompletedItems = useCallback(
         (event) => {
             event.preventDefault();
+            // 如果仍在更改checkbox，阻止使用者行為
+            if (isCheckBoxFetch) return;
             const needToDeletes = completedItems.map((item) => item.id);
             setDeletes((prev) => {
                 const toDeletes = needToDeletes.filter(
@@ -136,6 +145,7 @@ export default function TodoListPage() {
             deletes,
             setDeletes,
             completedItems,
+            isCheckBoxFetch,
         ]
     );
 
@@ -143,8 +153,7 @@ export default function TodoListPage() {
     const addTodoItem = useCallback(
         (event) => {
             event.preventDefault();
-            if (inputValue === "") return;
-
+            if (/^$|^\s*$/.test(inputValue)) return;
             HexSchoolTodoProvider.addTodo({
                 token: auth.token,
                 todo: {
